@@ -1,13 +1,15 @@
+import Image from "next/image";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect } from "react";
+import { motion } from "framer-motion";
 
-type NavbarLinks = {
+type NavbarLink = {
   children: React.ReactNode;
   to: string;
   ignoreColor?: boolean;
 };
 
-function NavbarLinks({ children, to, ignoreColor }: NavbarLinks) {
+function NavbarLink({ children, to, ignoreColor }: NavbarLink) {
   const router = useRouter();
 
   return ignoreColor ? (
@@ -35,8 +37,43 @@ type Props = {};
 
 const Navbar = (props: Props) => {
   const router = useRouter();
+  //   const [user, loading] = useAuthState(auth);
 
-  return <div>Navbar</div>;
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [isOpen]);
+
+  return (
+    <>
+      {!isOpen && (
+        <>
+          <nav>
+            <div>
+              <h1 className="text-2xl">
+                Junior <span className="text-[#fb561d]">Team</span>
+              </h1>
+            </div>
+          </nav>
+        </>
+      )}
+
+      {isOpen && (
+        <>
+          <nav>
+            <div>
+              <h1>Junior Team</h1>
+            </div>
+          </nav>
+        </>
+      )}
+    </>
+  );
 };
 
 export default Navbar;
