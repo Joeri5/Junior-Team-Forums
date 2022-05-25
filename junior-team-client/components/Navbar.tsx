@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
+import { Logo } from "../assets";
 
 type NavbarLink = {
   children: React.ReactNode;
@@ -53,11 +54,16 @@ const Navbar = (props: Props) => {
     <>
       {!isOpen && (
         <>
-          <nav>
+          <nav className="bg-gray-400">
             <div>
+              <div className="px-5 py-5 flex items-center">
               <h1 className="text-2xl">
                 Junior <span className="text-[#fb561d]">Team</span>
               </h1>
+            </div>
+            <div>
+
+            </div>
             </div>
           </nav>
         </>
