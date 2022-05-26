@@ -27,7 +27,7 @@ function NavbarLink({ children, to, ignoreColor }: NavbarLinkProps) {
   ) : (
     <button
       onClick={() => router.push(to)}
-      className="flex text-xl w-20 mx-10 md:mx-5 transitition-border ease-in-out duration-300"
+      className="flex text-xl w-20 mx-10 md:mx-5 transitition-border ease-in-out duration-300 hover:border-[#fb561d] hover:border-b-2 "
     >
       {children}
     </button>

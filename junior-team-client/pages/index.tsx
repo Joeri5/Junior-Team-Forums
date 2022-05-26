@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
+import { Background, Customer, Forum } from "../assets";
 
 const Home: NextPage = () => {
   return (
@@ -11,7 +12,50 @@ const Home: NextPage = () => {
         <link rel="icon" href="/icon.png" />
       </Head>
 
-      <main></main>
+      <main className="h-screen">
+        <div className="h-4/5 w-screen bg-black">
+          <div className="h-full w-screen bg-[url('../assets/minecraft5.jpg')] bg-cover bg-no-repeat">
+            <figure className="w-full bg-black bg-opacity-70 h-full">
+              <div className="flex flex-col gap-10 items-center justify-center h-full w-full ">
+                <h1 className="text-white text-5xl">
+                  Junior Team{" "}
+                  <span className="before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-[#fb561d] relative inline-block">
+                    <span className="relative text-white">Forums</span>
+                  </span>
+                </h1>
+                <div className="flex flex-col gap-5 items-center justify-center">
+                  <p className="text-white text-2xl">Search the Forums</p>
+                  <label className="relative block">
+                    <span className="sr-only">Search</span>
+                    <span className="absolute inset-y-0 left-0 flex items-center pl-2">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-5 w-5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                        />
+                      </svg>
+                    </span>
+                    <input
+                      className="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+                      placeholder="Search for anything..."
+                      type="text"
+                      name="search"
+                    />
+                  </label>
+                </div>
+              </div>
+            </figure>
+          </div>
+        </div>
+      </main>
 
       <footer></footer>
     </div>
