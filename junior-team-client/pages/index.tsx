@@ -17,12 +17,14 @@ const Home: NextPage = () => {
           <div className="h-full w-screen bg-[url('../assets/minecraft5.jpg')] bg-cover bg-no-repeat">
             <figure className="w-full bg-black bg-opacity-70 h-full">
               <div className="flex flex-col gap-10 items-center justify-center h-full w-full ">
-                <h1 className="text-white text-5xl">
-                  Junior Team{" "}
-                  <span className="before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-[#fb561d] relative inline-block">
-                    <span className="relative text-white">Forums</span>
-                  </span>
-                </h1>
+                <div className="w-screen flex justify-center">
+                  <h1 className="text-white text-center text-5xl">
+                    Junior Team <br className="md:hidden" />
+                    <span className="before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-[#fb561d] relative inline-block">
+                      <span className="relative text-white">Forums</span>
+                    </span>
+                  </h1>
+                </div>
                 <div className="flex flex-col gap-5 items-center justify-center">
                   <p className="text-white text-2xl">Search the Forums</p>
                   <label className="relative block">
