@@ -52,10 +52,11 @@ type Props = {};
 
 const Navbar = (props: Props) => {
   const router = useRouter();
-  //   const [user, loading] = useAuthState(auth);
+  const handleLogin = () => {
+    window.location.href = "http://localhost:3001/api/auth/discord";
+  };
 
   const [isOpen, setIsOpen] = React.useState(false);
-  console.log(isOpen);
 
   useEffect(() => {
     if (isOpen) {
@@ -78,7 +79,10 @@ const Navbar = (props: Props) => {
                 <NavbarLink to="/topics">Topics</NavbarLink>
                 <NavbarLink to="/threads">Threads</NavbarLink>
                 <div className="h-10 ml-10">
-                  <button className="border-[#5865F2] border-2 hover:bg-[#5865F2] transition-colors ease-in-out duration-300 hover:text-white px-10 h-full rounded-md text-[#5865F2]">
+                  <button
+                    onClick={handleLogin}
+                    className="border-[#5865F2] border-2 hover:bg-[#5865F2] transition-colors ease-in-out duration-300 hover:text-white px-10 h-full rounded-md text-[#5865F2]"
+                  >
                     Login
                   </button>
                 </div>
