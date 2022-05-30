@@ -29,7 +29,10 @@ const Dropdown = ({ title }: Props) => {
               {title || null}
             </button>
           </div>
-          <div className="z-10 absolute bg-white divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700">
+          <motion.div
+            animate={{ y: 10 }}
+            className="z-10 absolute bg-white divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700"
+          >
             <ul className="py-1 text-sm text-gray-700 dark:text-gray-200">
               <li>
                 <a
@@ -68,7 +71,7 @@ const Dropdown = ({ title }: Props) => {
                 </a>
               </li>
             </ul>
-          </div>
+          </motion.div>
         </div>
       )}
     </div>
