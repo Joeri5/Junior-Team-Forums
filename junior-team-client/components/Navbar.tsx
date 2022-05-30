@@ -1,17 +1,19 @@
-import Image from "next/image";
-import { useRouter } from "next/router";
-import React, { useEffect } from "react";
-import { motion } from "framer-motion";
-import { Logo } from "../assets";
+import Image from "next/image"
+import { useRouter } from "next/router"
+import React, { useEffect } from "react"
+import { motion } from "framer-motion"
+import { Logo } from "../assets"
+import { signIn, signOut, useSession } from "next-auth/react"
+import Dropdown from "./Dropdown"
 
 type NavbarLinkProps = {
-  children: React.ReactNode;
-  to: string;
-  ignoreColor?: boolean;
-};
+  children: React.ReactNode
+  to: string
+  ignoreColor?: boolean
+}
 
 function NavbarLink({ children, to, ignoreColor }: NavbarLinkProps) {
-  const router = useRouter();
+  const router = useRouter()
 
   return ignoreColor ? (
     <button
@@ -31,11 +33,11 @@ function NavbarLink({ children, to, ignoreColor }: NavbarLinkProps) {
     >
       {children}
     </button>
-  );
+  )
 }
 
 function NavbarLogo(props: Props) {
-  const router = useRouter();
+  const router = useRouter()
 
   return router.asPath === "/" ? (
     <button onClick={() => router.push("/")} className="text-2xl">
@@ -45,26 +47,28 @@ function NavbarLogo(props: Props) {
     <button onClick={() => router.push("/")} className="text-2xl">
       <span className="text-[#fb561d]">Junior</span> Team
     </button>
-  );
+  )
 }
 
-type Props = {};
+type Props = {}
 
 const Navbar = (props: Props) => {
-  const router = useRouter();
+  const router = useRouter()
   const handleLogin = () => {
-    window.location.href = "http://localhost:3001/api/auth/discord";
-  };
+    window.location.href = "/api/auth/signin"
+  }
 
-  const [isOpen, setIsOpen] = React.useState(false);
+  const { data: session, status } = useSession()
+
+  const [isOpen, setIsOpen] = React.useState(false)
 
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = "hidden";
+      document.body.style.overflow = "hidden"
     } else {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = "unset"
     }
-  }, [isOpen]);
+  }, [isOpen])
 
   return (
     <>
@@ -78,14 +82,33 @@ const Navbar = (props: Props) => {
               <div className="hidden md:flex items-center">
                 <NavbarLink to="/topics">Topics</NavbarLink>
                 <NavbarLink to="/threads">Threads</NavbarLink>
-                <div className="h-10 ml-10">
-                  <button
-                    onClick={handleLogin}
-                    className="border-[#5865F2] border-2 hover:bg-[#5865F2] transition-colors ease-in-out duration-300 hover:text-white px-10 h-full rounded-md text-[#5865F2]"
-                  >
-                    Login
-                  </button>
+                <div className="h-10 mx-10">
+                  {!session && (
+                    <button
+                      onClick={handleLogin}
+                      className="border-[#5865F2] border-2 hover:bg-[#5865F2] transition-colors ease-in-out duration-300 hover:text-white px-10 h-full rounded-md text-[#5865F2]"
+                    >
+                      Login
+                    </button>
+                  )}
                 </div>
+                {session?.user && (
+                  <div className="flex items-center w-full">
+                    <div className="">
+                      {/* @ts-ignore */}
+                      <Dropdown title={session.user.email} />
+                    </div>
+                    <div className="flex items-end justify-end -ml-10 ">
+                      {session.user.image && (
+                        <img
+                          src={session?.user?.image || "user image"}
+                          alt={"Profile picture of " + session.user.name}
+                          className="w-14 h-14 rounded-full bg-gray-50"
+                        />
+                      )}
+                    </div>
+                  </div>
+                )}
               </div>
               <div className="md:hidden">
                 <button onClick={() => setIsOpen(true)}>
@@ -128,7 +151,7 @@ const Navbar = (props: Props) => {
         </motion.div>
       )}
     </>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar
